@@ -1,0 +1,43 @@
+---
+- name: Connect vpn to dcloud pod
+  hosts: localhost
+  connection: local
+
+  vars_prompt:
+    - name: "pod_num"
+      prompt: "What is your assigned pod number?"
+      private: no
+      when: pod_num == null
+
+  tasks:
+    - name: Fail if a setting is missing
+      fail:
+        msg: "Please answer all user prompts with valid values"
+      when: pod_num == ""
+
+    - name: Read in file
+      shell: cat pods.csv
+      register: mypods
+
+    - name: Set creds
+      set_fact:
+        pod_line: "{{ mypods.stdout_lines[pod_num | int].split(',') }}"
+
+    - name: Set user
+      set_fact:
+        pod_user: "{{ pod_line[2].split(';')[0] }}"
+
+    - name: Set Pass
+      set_fact:
+        pod_pass: "{{ pod_line[3] | replace('\"', '')|replace('=','') }}"
+
+    - name: Print user/pass line
+      debug:
+#        msg: "{{ mypods.stdout_lines[pod_num| int] }}"
+        msg: "{{ pod_user }} - {{ pod_pass }}"
+
+    - name: "Setting password."
+      shell: "echo {{pod_pass}} > vpnpw.txt"
+
+    - name: "Connecting VPN"
+      shell: "openconnect dcloud-rtp-anyconnect.cisco.com -b --no-dtls -q -u {{pod_user}} < vpnpw.txt"

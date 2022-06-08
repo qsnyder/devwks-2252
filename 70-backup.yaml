@@ -1,0 +1,21 @@
+- name: Back up configs to folder
+  hosts: all
+  gather_facts: no
+
+  tasks:
+
+  - name: backup running-config (IOSXE)
+    when: ansible_network_os == 'cisco.ios.ios'
+    cisco.ios.ios_config:
+      backup: yes
+      backup_options:
+        dir_path: "backup/{{ inventory_hostname }}/"
+        filename: "final_running_config.cfg"
+
+  - name: backup running-config (NXOS)
+    when: ansible_network_os == 'cisco.nxos.nxos'
+    cisco.nxos.nxos_config:
+      backup: yes
+      backup_options:
+        dir_path: "backup/{{ inventory_hostname }}/"
+        filename: "final_running_config.cfg"

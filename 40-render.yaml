@@ -1,0 +1,105 @@
+- name: Demonstrate rendering capabilities of Ansible 
+  hosts: all
+  gather_facts: no
+
+  tasks:
+
+  - name: Apply IOSXE NTP Configuration
+    when: ansible_network_os == 'cisco.ios.ios'
+    cisco.ios.ios_ntp_global:
+      config:
+        servers:
+          - server: "{{ item }}"
+            version: 2
+      state: rendered
+    loop: "{{ ntp_servers }}"
+    tags:
+      - deploy
+
+  - name: Apply NXOS NTP Configuration
+    when: ansible_network_os == 'cisco.nxos.nxos'
+    cisco.nxos.nxos_ntp_global:
+      config:
+        servers:
+          - server: "{{ item }}"
+      state: rendered
+    loop: "{{ ntp_servers }}"
+    tags:
+      - deploy
+
+  - name: Remove IOSXE NTP Configuration
+    when: ansible_network_os == 'cisco.ios.ios'
+    cisco.ios.ios_ntp_global:
+      config:
+        servers:
+          - server: "{{ item }}"
+            version: 2
+      state: rendered
+    loop: "{{ ntp_servers }}"
+    tags:
+      - clean
+
+  - name: Remove NXOS NTP Configuration
+    when: ansible_network_os == 'cisco.nxos.nxos'
+    cisco.nxos.nxos_ntp_global:
+      config:
+        servers:
+          - server: "{{ item }}"
+      state: rendered
+    loop: "{{ ntp_servers }}"
+    tags:
+      - clean
+
+  - name: Render some IOSXE prefix-lists
+    when: ansible_network_os == 'cisco.ios.ios'
+    cisco.ios.ios_prefix_lists:
+      config:
+        - afi: ipv4
+          prefix_lists:
+            - name: 10
+              description: allows engineering IPv4 networks
+              entries:
+                - sequence: 10
+                  action: permit
+                  prefix: 192.0.2.0/23
+                  ge: 24
+                - sequence: 20
+                  action: permit
+                  prefix: 198.51.100.128/26
+            - name: 20
+              description: denies lab IPv4 networks
+              entries:
+                - sequence: 20
+                  action: deny
+                  prefix: 203.0.113.0/24
+                  le: 25
+      state: rendered
+    tags:
+      - prefix
+
+  - name: Render some NXOS prefix-lists
+    when: ansible_network_os == 'cisco.nxos.nxos'
+    cisco.nxos.nxos_prefix_lists:
+      config:
+        - afi: ipv4
+          prefix_lists:
+            - name: AllowPrefix
+              description: allows engineering IPv4 networks
+              entries:
+                - sequence: 10
+                  action: permit
+                  prefix: 192.0.2.0/23
+                  eq: 24
+                - sequence: 20
+                  action: permit
+                  prefix: 198.51.100.128/26
+            - name: DenyPrefix
+              description: denies lab IPv4 networks
+              entries:
+                - sequence: 20
+                  action: deny
+                  prefix: 203.0.113.0/24
+                  le: 25
+      state: rendered
+    tags:
+      - prefix

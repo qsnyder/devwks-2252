@@ -1,0 +1,4 @@
+venv/
+.virl
+roles/securenetwrk.ios_vrf
+collections/ansible_collections

@@ -1,0 +1,63 @@
+---
+- name: Apply NXOS logging configuration
+  cisco.nxos.nxos_logging_global:
+    config:
+      console:
+        severity: critical
+      hosts:
+        - host: 10.10.20.49
+          use_vrf: management
+        - host: 10.10.20.50
+          use_vrf: management
+      monitor:
+        severity: warning
+      origin_id:
+        hostname: True
+    state: merged
+  tags:
+    - nxos
+    - logging
+    - compliance
+
+- name: Create NXOS users
+  cisco.nxos.nxos_user:
+    aggregate: "{{ local_users }}"
+    role: network-operator
+    state: present
+    update_password: on_create
+    purge: no
+  tags:
+    - nxos
+    - users
+    - compliance
+
+- name: Apply clock configs
+  cisco.nxos.nxos_config:
+    lines:
+      - clock timezone PST -8 0
+      - clock summer-time PDT 1 Sunday March 02:00 1 Sunday November 02:00 60
+  tags:
+    - nxos
+    - clock
+    - compliance
+
+- name: Apply NXOS NTP Configuration
+  cisco.nxos.nxos_ntp_global:
+    config:
+      servers:
+        - server: "{{ item }}"
+    state: merged
+  loop: "{{ ntp_servers }}"
+  tags:
+  - nxos
+  - time
+  - compliance
+
+- name: Configure NXOS System Details
+  cisco.nxos.nxos_system:
+    domain_name: "{{ domain_name | default('clus2022.com') }}"
+    domain_lookup: no
+  tags:
+    - nxos
+    - domain
+    - compliance

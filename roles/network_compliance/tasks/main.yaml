@@ -1,0 +1,18 @@
+---
+# tasks file for network-compliance
+
+- name: IOSXE Compliance Deployment
+  include_tasks: iosxe.yaml
+  when: ansible_network_os == "cisco.ios.ios"
+  tags:
+  - iosxe
+  - users
+  - compliance
+
+- name: NXOS Compliance Deployment
+  include_tasks: nxos.yaml
+  when: ansible_network_os == "cisco.nxos.nxos"
+  tags:
+  - nxos
+  - users
+  - compliance

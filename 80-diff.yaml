@@ -1,0 +1,17 @@
+- name: Compare running-config to initial config
+  hosts: all
+  gather_facts: no
+
+  tasks:
+
+  - name: diff running-config (IOSXE) against initial
+    when: ansible_network_os == 'cisco.ios.ios'
+    cisco.ios.ios_config:
+      diff_against: intended
+      intended_config: "{{ lookup('file', 'backup/{{ inventory_hostname }}/initial_running_config.cfg') }}"
+
+  - name: diff running-config (NXOS) against initial
+    when: ansible_network_os == 'cisco.nxos.nxos'
+    cisco.nxos.nxos_config:
+      diff_against: intended
+      intended_config: "{{ lookup('file', 'backup/{{ inventory_hostname }}/initial_running_config.cfg') }}"

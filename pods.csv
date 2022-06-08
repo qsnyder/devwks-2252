@@ -1,0 +1,13 @@
+ Session Id, Session Name, Usernames, Password ,Start,Stop, DNS Assets, Endpoint Kits, Public Ips
+734485, Cisco VIRL 1.6.65 Sandbox July Release v1, v83user1; v83user2; ... v83user16,911526, 2020-01-26 00:00, 2020-01-31 00:01, None, None, None
+734486, Cisco VIRL 1.6.65 Sandbox July Release v1, v2999user1; v2999user2; ... v2999user16, 8aa550, 2020-01-25 23:56, 2020-01-31 00:02, None, None, None
+734487, Cisco VIRL 1.6.65 Sandbox July Release v1, v1314user1; v1314user2; ... v1314user16, f8324c, 2020-01-25 23:52, 2020-01-31 00:03, None, None, None
+734488, Cisco VIRL 1.6.65 Sandbox July Release v1, v435user1; v435user2; ... v435user16, 2d5317, 2020-01-25 23:48, 2020-01-31 00:04, None, None, None
+734489, Cisco VIRL 1.6.65 Sandbox July Release v1, v2767user1; v2767user2; ... v2767user16,88e094, 2020-01-25 23:44, 2020-01-31 00:05, None, None, None
+734490, Cisco VIRL 1.6.65 Sandbox July Release v1, v1955user1; v1955user2; ... v1955user16, 96b127, 2020-01-25 23:40, 2020-01-31 00:06, None, None, None
+734491, Cisco VIRL 1.6.65 Sandbox July Release v1, v1313user1; v1313user2; ... v1313user16,220504, 2020-01-25 23:36, 2020-01-31 00:07, None, None, None
+734492, Cisco VIRL 1.6.65 Sandbox July Release v1, v2857user1; v2857user2; ... v2857user16, 5b138c, 2020-01-25 23:32, 2020-01-31 00:08, None, None, None
+734493, Cisco VIRL 1.6.65 Sandbox July Release v1, v2007user1; v2007user2; ... v2007user16, b2881f, 2020-01-25 23:28, 2020-01-31 00:09, None, None, None
+734494, Cisco VIRL 1.6.65 Sandbox July Release v1, v2891user1; v2891user2; ... v2891user16, eaa0d6, 2020-01-25 23:24, 2020-01-31 00:10, None, None, None
+734495, Cisco VIRL 1.6.65 Sandbox July Release v1, v163user1; v163user2; ... v163user16, 4388d9, 2020-01-25 23:20, 2020-01-31 00:11, None, None, None
+734496, Cisco VIRL 1.6.65 Sandbox July Release v1, v303user1; v303user2; ... v303user16, 0e59f0, 2020-01-25 23:16, 2020-01-31 00:12, None, None, None

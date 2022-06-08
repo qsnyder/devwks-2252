@@ -1,0 +1,9 @@
+---
+
+local_users:
+  - name: clus2022
+    configured_password: "Cisco123"
+  - name: admin-clus2022
+    configured_password: "Cisco123"
+  - name: admin2
+    configured_password: "Cisco123"

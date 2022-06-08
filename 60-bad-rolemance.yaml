@@ -1,0 +1,7 @@
+---
+- name: Use roles to enforce compliance
+  hosts: all
+  gather_facts: false
+
+  roles:
+    - bad_rolemance
