@@ -1,13 +1,13 @@
 ---
-- name: Connect vpn to dcloud pod
+- name: Connect vpn to DevNet Sandbox
   hosts: localhost
   connection: local
 
   vars_prompt:
-    - name: "pod_num"
-      prompt: "What is your assigned pod number?"
+
+    - name: pod_num
+      prompt: What is your assigned pod number?
       private: no
-      when: pod_num == null
 
   tasks:
     - name: Fail if a setting is missing
@@ -16,28 +16,32 @@
       when: pod_num == ""
 
     - name: Read in file
-      shell: cat pods.csv
-      register: mypods
+      shell: cat clus_pods.csv
+      register: pods
 
     - name: Set creds
       set_fact:
-        pod_line: "{{ mypods.stdout_lines[pod_num | int].split(',') }}"
+        pod_line: "{{ pods.stdout_lines[pod_num | int].split(',') }}"
 
     - name: Set user
       set_fact:
-        pod_user: "{{ pod_line[2].split(';')[0] }}"
+        pod_user: "{{ pod_line[3] }}"
 
-    - name: Set Pass
+    - name: Set Password
       set_fact:
-        pod_pass: "{{ pod_line[3] | replace('\"', '')|replace('=','') }}"
+        pod_pass: "{{ pod_line[4] }}"
+
+    - name: Set Endpoint Port
+      set_fact:
+        pod_port: "{{ pod_line[2] }}"
 
     - name: Print user/pass line
       debug:
-#        msg: "{{ mypods.stdout_lines[pod_num| int] }}"
-        msg: "{{ pod_user }} - {{ pod_pass }}"
+        msg: "{{ pod_user }} - {{ pod_pass }} - {{ pod_port }}"
 
     - name: "Setting password."
       shell: "echo {{pod_pass}} > vpnpw.txt"
 
     - name: "Connecting VPN"
-      shell: "openconnect dcloud-rtp-anyconnect.cisco.com -b --no-dtls -q -u {{pod_user}} < vpnpw.txt"
+#      shell: "sudo openconnect devnetsandbox-usw1-reservation.cisco.com:{{port}} -b --no-dtls -q -u {{pod_user}} < vpnpw.txt"
+      shell: "sudo openconnect devnetsandbox-usw1-reservation.cisco.com:{{port}} --no-dtls  -u {{pod_user}} < vpnpw.txt"
