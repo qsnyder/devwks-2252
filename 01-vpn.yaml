@@ -44,4 +44,4 @@
 
     - name: "Connecting VPN"
 #      shell: "sudo openconnect devnetsandbox-usw1-reservation.cisco.com:{{port}} -b --no-dtls -q -u {{pod_user}} < vpnpw.txt"
-      shell: "sudo openconnect devnetsandbox-usw1-reservation.cisco.com:{{port}} --no-dtls  -u {{pod_user}} < vpnpw.txt"
+      shell: "sudo openconnect devnetsandbox-usw1-reservation.cisco.com:{{pod_port}} --no-dtls  -u {{pod_user}} < vpnpw.txt"
