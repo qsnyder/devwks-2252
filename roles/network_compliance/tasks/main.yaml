@@ -6,13 +6,21 @@
   when: ansible_network_os == "cisco.ios.ios"
   tags:
   - iosxe
-  - users
   - compliance
+  - logging
+  - users
+  - clock
+  - time
+  - domain
 
 - name: NXOS Compliance Deployment
   include_tasks: nxos.yaml
   when: ansible_network_os == "cisco.nxos.nxos"
   tags:
   - nxos
-  - users
   - compliance
+  - logging
+  - users
+  - clock
+  - time
+  - domain
