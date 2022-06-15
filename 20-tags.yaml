@@ -1,51 +1,35 @@
 - name: Demonstrate use of tags with NTP configuration
   hosts: all
   gather_facts: no
+  vars:
+    desired_state: merged
 
   tasks:
 
-  - name: Apply IOSXE NTP Configuration
+  - name: Set clean state
+    tags: clean
+    set_fact:
+      desired_state: deleted
+
+  - name: Ensure IOSXE NTP Configuration
     when: ansible_network_os == 'cisco.ios.ios'
     cisco.ios.ios_ntp_global:
       config:
         servers:
           - server: "{{ item }}"
             version: 2
-      state: merged
+      state: "{{desired_state}}"
     loop: "{{ ntp_servers }}"
     tags:
       - deploy
 
-  - name: Apply NXOS NTP Configuration
+  - name: Ensure NXOS NTP Configuration
     when: ansible_network_os == 'cisco.nxos.nxos'
     cisco.nxos.nxos_ntp_global:
       config:
         servers:
           - server: "{{ item }}"
-      state: merged
+      state: "{{ desired_state }}"
     loop: "{{ ntp_servers }}"
     tags:
       - deploy
-
-  - name: Remove IOSXE NTP Configuration
-    when: ansible_network_os == 'cisco.ios.ios'
-    cisco.ios.ios_ntp_global:
-      config:
-        servers:
-          - server: "{{ item }}"
-            version: 2
-      state: deleted
-    loop: "{{ ntp_servers }}"
-    tags:
-      - clean
-
-  - name: Remove NXOS NTP Configuration
-    when: ansible_network_os == 'cisco.nxos.nxos'
-    cisco.nxos.nxos_ntp_global:
-      config:
-        servers:
-          - server: "{{ item }}"
-      state: deleted
-    loop: "{{ ntp_servers }}"
-    tags:
-      - clean
