@@ -7,7 +7,7 @@
   tasks:
 
   - name: Set clean state
-    tags: clean
+    tags: never, clean
     set_fact:
       desired_state: deleted
 
