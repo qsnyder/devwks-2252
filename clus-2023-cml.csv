@@ -1,0 +1,16 @@
+﻿Lab,VPN Network Address,endpoint port,vpn login,vpn password
+CLUS-1,devnetsandbox-usw1-reservation.cisco.com:20206,20206,cmluser0,ACRDAQXR
+CLUS-2,devnetsandbox-usw1-reservation.cisco.com:20151,20151,cmluser1,BTIPXKQQ
+CLUS-3,devnetsandbox-usw1-reservation.cisco.com:20186,20186,cmluser2,RNPSBAHS
+CLUS-4,devnetsandbox-usw1-reservation.cisco.com:20120,20120,cmluser3,JQRFJJWT
+CLUS-5,devnetsandbox-usw1-reservation.cisco.com:20106,20106,cmluser4,BSMPRXIC
+CLUS-6,devnetsandbox-usw1-reservation.cisco.com:20230,20230,cmluser5,WTPUMKQP
+CLUS-7,devnetsandbox-usw1-reservation.cisco.com:20295,20295,cmluser6,PMELDEVB
+CLUS-8,devnetsandbox-usw1-reservation.cisco.com:20296,20296,cmluser7,SGUHWXIE
+CLUS-9,devnetsandbox-usw1-reservation.cisco.com:20299,20299,cmluser8,TXAGYQVL
+CLUS-10,devnetsandbox-usw1-reservation.cisco.com:20312,20312,cmluser9,QHUSJRVN
+CLUS-11,devnetsandbox-usw1-reservation.cisco.com:20315,20315,cmluser10,HSWXETRR
+CLUS-12,devnetsandbox-usw1-reservation.cisco.com:20319,20319,cmluser11,GUIIIPKH
+CLUS-13,devnetsandbox-usw1-reservation.cisco.com:20323,20323,cmluser12,IWSSIOKE
+CLUS-14,devnetsandbox-usw1-reservation.cisco.com:20329,20329,cmluser13,UFYOYHGJ
+CLUS-15,devnetsandbox-usw1-reservation.cisco.com:20337,20337,cmluser14,UDOHZZNF
