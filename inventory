@@ -1,8 +1,8 @@
 [all:vars]
 ansible_connection=ansible.netcommon.network_cli
 ansible_python_interpreter = /usr/bin/env python
-ansible_user = admin
-ansible_password = C1sco12345
+ansible_user = cisco
+ansible_password = cisco
 
 [iosxe]
 10.10.20.175
@@ -13,6 +13,9 @@ ansible_user=cisco
 ansible_network_os=cisco.ios.ios
 ansible_ssh_pass=cisco
 ansible_password=cisco
+ansible_become=true
+ansible_become_method=enable
+ansible_become_password=cisco
 nc_port=830
 
 [nxos]
