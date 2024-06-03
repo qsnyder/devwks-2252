@@ -16,7 +16,7 @@
       when: pod_num == ""
 
     - name: Read in file
-      shell: cat clus-2023-cml.csv
+      shell: cat devwks-2252-clus24.csv
       register: pods
 
     - name: Set creds
