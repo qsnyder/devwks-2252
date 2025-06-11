@@ -15,7 +15,7 @@
       when: pod_num == ""
 
     - name: Read in file
-      shell: cat devwks-2252-cleur25.csv
+      shell: cat clamer-2025-nso.csv
       register: pods
 
     - name: Set creds
@@ -39,7 +39,7 @@
         msg: "{{ pod_user }} - {{ pod_pass }} - {{ pod_port }}"
 
     #    - name: "Setting password."
-      #      shell: "echo {{pod_pass}} > vpnpw.txt"
+    #      shell: "echo {{pod_pass}} > vpnpw.txt"
 
     - name: "Connecting VPN"
       # shell: "sudo openconnect devnetsandbox-usw1-reservation.cisco.com:{{pod_port}} -b --no-dtls -q -u {{pod_user}} < vpnpw.txt"
